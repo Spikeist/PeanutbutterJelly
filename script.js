@@ -28,6 +28,7 @@ const SECTION_COPY = {
   anniversarySub: "same day, same time, every year",
   flowersTitle: "The Flower Log",
   flowersSub: "every bouquet so far",
+  flowersCount: "{n} bouquets and counting", // {n} becomes the number of entries in FLOWERS
   letterTitle: "A letter for you",
   letterTease: "tap to open",
   letterClose: "fold it back up",
@@ -403,6 +404,8 @@ function applyCopy() {
   set("#anniversary-sub", SECTION_COPY.anniversarySub);
   set("#flowers-title", SECTION_COPY.flowersTitle);
   set("#flowers-sub", SECTION_COPY.flowersSub);
+  const n = FLOWERS.length;
+  set("#flowers-count", n ? String(SECTION_COPY.flowersCount || "").replace("{n}", String(n)).replace(/bouquets/, n === 1 ? "bouquet" : "bouquets") : "");
   set("#letter-title", SECTION_COPY.letterTitle);
   set("#letter-tease", SECTION_COPY.letterTease);
   set("#letter-close", SECTION_COPY.letterClose);
