@@ -574,15 +574,32 @@ function renderMilestones() {
    --------------------------------------------------------------------- */
 let anniversaryClock = null;
 
+// The soonest yearly repeat of ANY milestone (the official day, the first date, ...).
 function nextAnniversary(now) {
-  const { y } = parseISODate(OFFICIAL_DATE);
-  const monthDay = OFFICIAL_DATE.slice(4); // "-09-17"
-  for (let year = y + 1; year < y + 500; year++) {
-    const iso = String(year) + monthDay;
-    const instant = zonedInstant(iso, OFFICIAL_TIME);
-    if (instant > now) return { iso, instant, nth: year - y };
+  let best = null;
+  for (const item of MILESTONES) {
+    const { y } = parseISODate(item.date);
+    const monthDay = item.date.slice(4); // "-09-17"
+    const time = item.time || "00:00";
+    for (let year = y + 1; year < y + 500; year++) {
+      const iso = String(year) + monthDay;
+      const instant = zonedInstant(iso, time);
+      if (instant <= now) continue;
+      const official = item.date === OFFICIAL_DATE && time === OFFICIAL_TIME;
+      if (!best || instant < best.instant || (instant === best.instant && official)) {
+        best = { iso, time, instant, nth: year - y, label: item.label, official };
+      }
+      break;
+    }
   }
-  return null;
+  return best;
+}
+
+function anniversaryLabel(next) {
+  if (next.official) return "our " + ordinal(next.nth) + " anniversary";
+  const label = String(next.label);
+  const lower = label.charAt(0).toLowerCase() + label.slice(1); // "First date" -> "first date"
+  return next.nth + (next.nth === 1 ? " year since " : " years since ") + lower;
 }
 
 function renderAnniversary() {
@@ -591,10 +608,10 @@ function renderAnniversary() {
   host.textContent = "";
   const next = nextAnniversary(Date.now());
   if (!next) return;
-  host.appendChild(h("p", { class: "milestone-label", text: "our " + ordinal(next.nth) + " anniversary" }));
+  host.appendChild(h("p", { class: "milestone-label" }, withAmpersands(anniversaryLabel(next))));
   host.appendChild(h("p", { class: "milestone-meta" }, [
-    h("time", { datetime: next.iso + "T" + OFFICIAL_TIME, text: formatLongDate(next.iso) }),
-    h("span", { class: "milestone-time", text: " · " + formatTime(OFFICIAL_TIME) }),
+    h("time", { datetime: next.iso + "T" + next.time, text: formatLongDate(next.iso) }),
+    h("span", { class: "milestone-time", text: " · " + formatTime(next.time) }),
   ]));
   if (anniversaryClock) {
     const at = clocks.indexOf(anniversaryClock);
