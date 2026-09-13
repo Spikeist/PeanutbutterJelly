@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>PB&amp;J 💜 Parker &amp; Julie</title>
+  <meta name="description" content="Parker &amp; Julie. Est. September 17, 2026.">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="theme-color" content="#fbf1f4">
+  <meta name="color-scheme" content="light">
+
+  <!-- Add-to-home-screen -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="PB&amp;J">
+  <meta name="application-name" content="PB&amp;J">
+  <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+  <link rel="icon" type="image/svg+xml" href="icons/favicon.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192.png">
+  <link rel="icon" type="image/png" sizes="512x512" href="icons/icon-512.png">
+  <link rel="shortcut icon" href="favicon.ico">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="is-gated">
+
+  <!-- Ambient drifting petals (decorative) -->
+  <div id="petals" class="petals" aria-hidden="true"></div>
+
+  <!-- ============================== GATE ============================== -->
+  <div id="gate" class="gate" role="dialog" aria-modal="true" aria-labelledby="gate-question">
+    <div class="gate-card">
+      <svg class="gate-mark" viewBox="0 0 512 512" aria-hidden="true" focusable="false">
+        <use href="#tulip-mark"></use>
+      </svg>
+      <p id="gate-kicker" class="gate-kicker">hi Julie</p>
+      <form id="gate-form" class="gate-form" autocomplete="off" novalidate>
+        <label id="gate-question" class="gate-question" for="gate-input">What is your childhood nickname?</label>
+        <input id="gate-input" class="gate-input" type="text" name="answer" inputmode="text"
+               autocapitalize="none" autocorrect="off" spellcheck="false" enterkeyhint="go" required>
+        <button id="gate-button" class="gate-button" type="submit">Come in</button>
+        <p id="gate-hint" class="gate-hint" aria-live="polite"></p>
+      </form>
+    </div>
+  </div>
+
+  <!-- ============================== PAGE ============================== -->
+  <main id="page" class="page">
+
+    <!-- HERO -->
+    <header class="hero" id="hero">
+      <svg class="hero-mark" viewBox="0 0 512 512" aria-hidden="true" focusable="false">
+        <use href="#tulip-mark"></use>
+      </svg>
+      <h1 class="hero-names" id="hero-title" tabindex="-1">
+        <span id="hero-him">Parker</span>
+        <span class="hero-amp" aria-hidden="true">&amp;</span>
+        <span class="sr-only">and</span>
+        <span id="hero-her">Julie</span>
+      </h1>
+      <p class="wordmark" role="img" aria-label="P B and J">
+        <span class="wm-p" aria-hidden="true">P</span><span class="wm-b" aria-hidden="true">B</span><span class="wm-amp" aria-hidden="true">&amp;</span><span class="wm-j" aria-hidden="true">J</span>
+      </p>
+      <p class="hero-est">
+        <span class="hero-est-label">Est.</span>
+        <time id="hero-est-time" datetime="2026-09-17T06:00"><span id="hero-est-date">September 17, 2026</span></time>
+      </p>
+      <p class="hero-caption"><span id="hero-caption">the day I asked properly</span></p>
+    </header>
+
+    <!-- DAYS COUNTER -->
+    <section class="card counter" id="counter" aria-labelledby="counter-spoken">
+      <p id="counter-spoken" class="sr-only" aria-live="polite"></p>
+      <div id="counter-live" class="counter-live" aria-hidden="true">
+        <p class="counter-days-row">
+          <span id="counter-days" class="counter-days">0</span>
+        </p>
+        <p id="counter-label" class="counter-label">days official</p>
+        <p id="counter-sub" class="counter-sub"></p>
+      </div>
+      <p id="counter-before" class="counter-before" aria-hidden="true" hidden>Day 0 — begins 9/17</p>
+    </section>
+
+    <!-- MILESTONES -->
+    <section class="card section" id="milestones" aria-labelledby="milestones-title">
+      <h2 id="milestones-title" class="section-title">Milestones</h2>
+      <ol id="milestones-list" class="milestones" role="list"></ol>
+    </section>
+
+    <!-- NEXT ANNIVERSARY (yearly countdown from the official moment) -->
+    <section class="card section anniversary" id="anniversary" aria-labelledby="anniversary-title">
+      <h2 id="anniversary-title" class="section-title">Next anniversary</h2>
+      <p id="anniversary-sub" class="section-sub">same day, same time, every year</p>
+      <div id="anniversary-body" class="anniversary-body milestone-body"></div>
+    </section>
+
+    <!-- THE FLOWER LOG -->
+    <section class="card section" id="flowers" aria-labelledby="flowers-title">
+      <h2 id="flowers-title" class="section-title">The Flower Log</h2>
+      <p id="flowers-sub" class="section-sub">every bouquet so far</p>
+      <ol id="flowers-list" class="flowers" role="list"></ol>
+    </section>
+
+    <!-- PHOTOS (hidden until the PHOTOS list has entries) -->
+    <section class="card section" id="photos" aria-labelledby="photos-title" hidden>
+      <h2 id="photos-title" class="section-title">Photos</h2>
+      <div id="photos-grid" class="photos-grid"></div>
+    </section>
+
+    <!-- THE LETTER (sealed until she taps it) -->
+    <section class="card section letter" id="letter" aria-labelledby="letter-title">
+      <h2 id="letter-title" class="section-title">A letter for you</h2>
+      <button id="letter-open" class="letter-seal" type="button" aria-expanded="false" aria-controls="letter-body">
+        <svg class="letter-seal-mark" viewBox="120 84 272 224" aria-hidden="true" focusable="false">
+          <use href="#tulip-bud"></use>
+        </svg>
+        <span id="letter-tease" class="letter-tease">tap to open</span>
+      </button>
+      <div id="letter-body" class="letter-body" hidden>
+        <div id="letter-text" class="letter-text"></div>
+        <p id="letter-signoff" class="letter-signoff"></p>
+        <button id="letter-close" class="letter-close" type="button">fold it back up</button>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <p id="footer-line" class="footer-line">for Julie, from Parker</p>
+    </footer>
+  </main>
+
+  <!-- Lightbox for photos -->
+  <div id="lightbox" class="lightbox" role="dialog" aria-modal="true" aria-label="Photo" hidden>
+    <button id="lightbox-close" class="lightbox-close" type="button" aria-label="Close photo">&times;</button>
+    <figure class="lightbox-figure">
+      <img id="lightbox-img" class="lightbox-img" alt="">
+      <figcaption id="lightbox-caption" class="lightbox-caption" hidden></figcaption>
+    </figure>
+  </div>
+
+  <!-- Shared tulip mark (referenced by <use> above) -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+    <defs>
+      <symbol id="tulip-mark" viewBox="0 0 512 512">
+        <linearGradient id="tm-bg" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#FFF8EC"/>
+          <stop offset="1" stop-color="#EFCB9E"/>
+        </linearGradient>
+        <radialGradient id="tm-halo" cx="0.5" cy="0.46" r="0.5">
+          <stop offset="0" stop-color="#F4B3CB" stop-opacity="0.75"/>
+          <stop offset="0.6" stop-color="#F4B3CB" stop-opacity="0.35"/>
+          <stop offset="1" stop-color="#F4B3CB" stop-opacity="0"/>
+        </radialGradient>
+        <linearGradient id="tm-leaf" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#63B573"/>
+          <stop offset="1" stop-color="#3C8A4F"/>
+        </linearGradient>
+        <linearGradient id="tm-jelly" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#8A44D6"/>
+          <stop offset="1" stop-color="#5B2487"/>
+        </linearGradient>
+        <linearGradient id="tm-pink" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#FFA3D0"/>
+          <stop offset="1" stop-color="#DF4590"/>
+        </linearGradient>
+        <rect width="512" height="512" fill="url(#tm-bg)"/>
+        <circle cx="256" cy="210" r="190" fill="url(#tm-halo)"/>
+        <path d="M256 270 C250 335 262 400 256 456" fill="none" stroke="#3C8A4F" stroke-width="30" stroke-linecap="round"/>
+        <path d="M250 440 C200 438 148 405 132 338 C190 345 238 385 250 440 Z" fill="url(#tm-leaf)"/>
+        <path d="M262 405 C305 400 352 372 376 318 C322 322 278 356 262 405 Z" fill="url(#tm-leaf)"/>
+        <path d="M256 300 C180 300 128 250 128 178 C128 148 134 120 144 100 C185 140 235 175 256 232 Z" fill="url(#tm-jelly)"/>
+        <path d="M256 300 C332 300 384 250 384 178 C384 148 378 120 368 100 C327 140 277 175 256 232 Z" fill="url(#tm-jelly)"/>
+        <path d="M256 300 C200 300 176 252 176 196 C176 150 218 116 256 92 C294 116 336 150 336 196 C336 252 312 300 256 300 Z" fill="url(#tm-pink)"/>
+        <ellipse cx="226" cy="178" rx="20" ry="46" fill="#FFFFFF" fill-opacity="0.26" transform="rotate(-16 226 178)"/>
+      </symbol>
+      <!-- Just the flower head, for the newest milestone -->
+      <symbol id="tulip-bud" viewBox="120 84 272 224">
+        <path d="M256 300 C180 300 128 250 128 178 C128 148 134 120 144 100 C185 140 235 175 256 232 Z" fill="#7a4bb8"/>
+        <path d="M256 300 C332 300 384 250 384 178 C384 148 378 120 368 100 C327 140 277 175 256 232 Z" fill="#7a4bb8"/>
+        <path d="M256 300 C200 300 176 252 176 196 C176 150 218 116 256 92 C294 116 336 150 336 196 C336 252 312 300 256 300 Z" fill="#e57fb0"/>
+      </symbol>
+    </defs>
+  </svg>
+
+  <script src="script.js"></script>
+</body>
+</html>
