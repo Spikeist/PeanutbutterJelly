@@ -52,7 +52,7 @@ const GATE_STORAGE_KEY = "pbj-gate-open"; // localStorage flag: each device only
 // A milestone that is still in the future counts down to it, then flips to counting up by itself.
 const MILESTONES = [
   { label: "First date", date: "2026-04-29", time: "16:30" },
-  { label: "First kiss", date: "2026-06-27", time: "00:00" },
+  { label: "First kiss", date: "2026-06-27", time: "23:30" },
   { label: "Officially us", date: "2026-09-18", time: "20:00" },
 ];
 
