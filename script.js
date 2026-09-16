@@ -10,8 +10,8 @@ const NAMES = { him: "Parker", her: "Julie" };
 
 /* ---- The big day ---------------------------------------------------- */
 // The moment it became official (date as YYYY-MM-DD, time as 24h HH:MM), in this time zone.
-const OFFICIAL_DATE = "2026-09-17";
-const OFFICIAL_TIME = "06:00";
+const OFFICIAL_DATE = "2026-09-18";
+const OFFICIAL_TIME = "20:00";
 const TIME_ZONE = "America/Chicago";
 
 // Hero copy.
@@ -19,7 +19,7 @@ const HERO_CAPTION = "the day I asked properly";
 
 // Counter copy.
 const COUNTER_LABEL = "days official";
-const COUNTER_BEFORE_TEXT = "Day 0 — begins 9/17"; // shown until the official moment arrives
+const COUNTER_BEFORE_TEXT = "Day 0 — begins 9/18"; // shown until the official moment arrives
 
 // Section headings and the small italic lines beneath them.
 const SECTION_COPY = {
@@ -52,7 +52,8 @@ const GATE_STORAGE_KEY = "pbj-gate-open"; // localStorage flag: each device only
 // A milestone that is still in the future counts down to it, then flips to counting up by itself.
 const MILESTONES = [
   { label: "First date", date: "2026-04-29", time: "16:30" },
-  { label: "Officially us", date: "2026-09-17", time: "06:00" },
+  { label: "First kiss", date: "2026-06-27", time: "00:00" },
+  { label: "Officially us", date: "2026-09-18", time: "20:00" },
 ];
 
 /* ---- The letter ----------------------------------------------------- */
@@ -71,7 +72,7 @@ const FLOWERS = [
   { flower: "sunflowers", date: "2026-08-21", note: "" },
   { flower: "pink roses", date: "2026-08-28", note: "" },
   { flower: "pink lilies", date: "2026-09-11", note: "" },
-  { flower: "pink & purple tulips", date: "2026-09-17", note: "" },
+  { flower: "pink & purple tulips", date: "2026-09-18", note: "" },
 ];
 
 // The little bloom drawn next to each flower-log entry, picked by matching the flower name.
