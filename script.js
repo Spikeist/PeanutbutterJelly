@@ -11,7 +11,7 @@ const NAMES = { him: "Parker", her: "Julie" };
 /* ---- The big day ---------------------------------------------------- */
 // The moment it became official (date as YYYY-MM-DD, time as 24h HH:MM), in this time zone.
 const OFFICIAL_DATE = "2026-09-18";
-const OFFICIAL_TIME = "20:00";
+const OFFICIAL_TIME = "18:30";
 const TIME_ZONE = "America/Chicago";
 
 // Hero copy.
@@ -53,7 +53,7 @@ const GATE_STORAGE_KEY = "pbj-gate-open"; // localStorage flag: each device only
 const MILESTONES = [
   { label: "First date", date: "2026-04-29", time: "16:30" },
   { label: "First kiss", date: "2026-06-27", time: "23:30" },
-  { label: "Officially us", date: "2026-09-18", time: "20:00" },
+  { label: "Officially us", date: "2026-09-18", time: "18:30" },
 ];
 
 /* ---- The letter ----------------------------------------------------- */
