@@ -753,6 +753,51 @@ body.has-lightbox { overflow: hidden; }
   color: var(--purple-deep);
 }
 
+/* earlier letters, tucked under the current one, each behind its own small seal */
+.letter-earlier {
+  margin-top: 24px;
+  padding-top: 20px;
+  border-top: 1px solid var(--line);
+}
+
+.letter-earlier-item + .letter-earlier-item { margin-top: 12px; }
+
+.letter-earlier-open {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  min-height: 56px;
+  padding: 12px 16px;
+  font: inherit;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 17px;
+  color: var(--muted);
+  background: linear-gradient(135deg, #f7ecf6, #fdeef2);
+  border: 1px dashed rgba(122, 75, 184, 0.35);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+
+.letter-earlier-open[aria-expanded="true"] { border-style: solid; }
+
+.letter-earlier-mark {
+  flex: none;
+  width: 26px;
+  height: 22px;
+}
+
+.letter-earlier-body {
+  margin-top: 16px;
+  animation: unfold 0.6s ease both;
+}
+
+.letter-earlier-body .letter-text { font-size: 18px; }
+
 .letter-close {
   display: block;
   margin: 22px auto 0;

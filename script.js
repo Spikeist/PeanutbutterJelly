@@ -57,8 +57,14 @@ const MILESTONES = [
 ];
 
 /* ---- The letter ----------------------------------------------------- */
+// The FIRST entry is the current letter. Older ones stay tucked underneath it: once the letter is
+// open, each older one can be opened too. To write a new letter, add it at the TOP and give the
+// one it replaces a label (the words on its little seal).
 // Blank lines between paragraphs become paragraph breaks.
-const LETTER_BODY = `I've been yearning my whole life for you and now with full confidence I'm able to say that you are and will be my forever. I've never cried from being too happy before and now you've made that happen several times. You have no idea how much I miss you when you're gone. You drive me crazy, I could never imagine life without you. I love you more than I'll ever be able to express. 🫶`;
+const LETTERS = [
+  { body: `I can't wait to marry you, I think about it everyday. I want to spend every second with you. I love you forever ❤️‍🔥` },
+  { label: "the first letter", body: `I've been yearning my whole life for you and now with full confidence I'm able to say that you are and will be my forever. I've never cried from being too happy before and now you've made that happen several times. You have no idea how much I miss you when you're gone. You drive me crazy, I could never imagine life without you. I love you more than I'll ever be able to express. 🫶` },
+];
 const LETTER_SIGNOFF = "— Parker"; // set to "" for no signature
 
 /* ---- The flower log ------------------------------------------------- */
@@ -73,6 +79,9 @@ const FLOWERS = [
   { flower: "pink roses", date: "2026-08-28", note: "" },
   { flower: "pink lilies", date: "2026-09-11", note: "" },
   { flower: "pink & purple tulips", date: "2026-09-18", note: "" },
+  // a mixed bouquet: hot-pink gerberas, orange roses, red carnations, a fleck of green
+  { flower: "pink bouquet", date: "2026-10-02", note: "",
+    swatch: "radial-gradient(circle at 32% 30%, #f7952f 0 21%, transparent 23%), radial-gradient(circle at 74% 46%, #f7952f 0 17%, transparent 19%), radial-gradient(circle at 40% 76%, #dc2f3f 0 17%, transparent 19%), radial-gradient(circle at 66% 14%, #58a65a 0 9%, transparent 11%), linear-gradient(135deg, #ff6bb0, #e0328c)" },
 ];
 
 // The little bloom drawn next to each flower-log entry, picked by matching the flower name.
@@ -669,14 +678,47 @@ function renderLetter() {
   const body = $("#letter-body");
   if (!section || !text) return;
 
-  const paragraphs = String(LETTER_BODY).trim().split(/\n\s*\n/);
-  text.textContent = "";
-  for (const para of paragraphs) text.appendChild(h("p", { text: para.trim() }));
+  const letters = LETTERS.filter((l) => l && String(l.body || "").trim());
+  if (letters.length === 0) { section.hidden = true; return; }
+
+  const fill = (host, bodyText) => {
+    host.textContent = "";
+    for (const para of String(bodyText).trim().split(/\n\s*\n/)) host.appendChild(h("p", { text: para.trim() }));
+  };
+  fill(text, letters[0].body);
   signoff.textContent = LETTER_SIGNOFF || "";
   signoff.hidden = !LETTER_SIGNOFF;
-  if (!String(LETTER_BODY).trim()) { section.hidden = true; return; }
+
+  // Older letters stay tucked under the current one, each behind its own little seal.
+  const earlier = $("#letter-earlier");
+  const collapseEarlier = [];
+  if (earlier) {
+    earlier.textContent = "";
+    letters.slice(1).forEach((letter, i) => {
+      const id = "letter-earlier-" + i;
+      const oldText = h("div", { class: "letter-text" });
+      fill(oldText, letter.body);
+      const oldBody = h("div", { class: "letter-earlier-body", id, hidden: true }, [
+        oldText,
+        LETTER_SIGNOFF ? h("p", { class: "letter-signoff", text: LETTER_SIGNOFF }) : null,
+      ]);
+      const toggle = h("button", { type: "button", class: "letter-earlier-open", "aria-expanded": "false", "aria-controls": id }, [
+        tulipNode("letter-earlier-mark"),
+        h("span", { text: letter.label || "an earlier letter" }),
+      ]);
+      const setEarlier = (isOpen) => {
+        oldBody.hidden = !isOpen;
+        toggle.setAttribute("aria-expanded", isOpen ? "true" : "false");
+      };
+      toggle.addEventListener("click", () => setEarlier(oldBody.hidden));
+      collapseEarlier.push(() => setEarlier(false));
+      earlier.appendChild(h("div", { class: "letter-earlier-item" }, [toggle, oldBody]));
+    });
+    earlier.hidden = letters.length < 2;
+  }
 
   const setOpen = (isOpen) => {
+    if (!isOpen) collapseEarlier.forEach((fold) => fold());
     section.classList.toggle("is-open", isOpen);
     open.setAttribute("aria-expanded", isOpen ? "true" : "false");
     body.hidden = !isOpen;
