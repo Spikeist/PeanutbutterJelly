@@ -82,6 +82,10 @@ const FLOWERS = [
   // a mixed bouquet: hot-pink gerberas, orange roses, red carnations, a fleck of green
   { flower: "pink bouquet", date: "2026-10-02", note: "",
     swatch: "radial-gradient(circle at 32% 30%, #f7952f 0 21%, transparent 23%), radial-gradient(circle at 74% 46%, #f7952f 0 17%, transparent 19%), radial-gradient(circle at 40% 76%, #dc2f3f 0 17%, transparent 19%), radial-gradient(circle at 66% 14%, #58a65a 0 9%, transparent 11%), linear-gradient(135deg, #ff6bb0, #e0328c)" },
+  { flower: "white roses", date: "2026-10-09", note: "" },
+  // an autumn mix: yellow mums, red roses, purple statice, an orange lily, green hydrangea
+  { flower: "fall mixed bouquet", date: "2026-10-12", note: "",
+    swatch: "radial-gradient(circle at 30% 30%, #c8102e 0 20%, transparent 22%), radial-gradient(circle at 72% 30%, #5b2ea6 0 17%, transparent 19%), radial-gradient(circle at 64% 64%, #f28c1e 0 19%, transparent 21%), radial-gradient(circle at 26% 70%, #7cb342 0 10%, transparent 12%), linear-gradient(135deg, #ffd84a, #f2b705)" },
 ];
 
 // The little bloom drawn next to each flower-log entry, picked by matching the flower name.
@@ -92,6 +96,7 @@ const FLOWER_SWATCHES = [
   [/purple.*pink.*tulip|pink.*purple.*tulip/i, "linear-gradient(135deg, #ff7fbf 50%, #8b3fd9 50%)"],
   [/purple tulip/i,                          "radial-gradient(circle at 35% 35%, #d2b0f2, #6e3fa8)"],
   [/pink tulip/i,                            "radial-gradient(circle at 35% 35%, #ffc9de, #e05a9a)"],
+  [/white rose/i,                           "radial-gradient(circle at 35% 35%, #ffffff 0 18%, #f6f0e7 55%, #d9ccbb)"],
   [/red rose/i,                              "radial-gradient(circle at 35% 35%, #ff8f8f, #c1121f)"],
   [/sunflower/i,                             "radial-gradient(circle, #5b3a1a 0 30%, #ffc531 34%)"],
   [/pink rose/i,                             "radial-gradient(circle at 35% 35%, #ffd6e6, #e24e92)"],
