@@ -87,6 +87,9 @@ const FLOWERS = [
   { flower: "fall mixed bouquet", date: "2026-10-12", note: "",
     swatch: "radial-gradient(circle at 30% 30%, #c8102e 0 20%, transparent 22%), radial-gradient(circle at 72% 30%, #5b2ea6 0 17%, transparent 19%), radial-gradient(circle at 64% 64%, #f28c1e 0 19%, transparent 21%), radial-gradient(circle at 26% 70%, #7cb342 0 10%, transparent 12%), linear-gradient(135deg, #ffd84a, #f2b705)" },
   { flower: "yellow roses", date: "2026-10-24", note: "" },
+  // pink roses with a spray of steel-blue sea holly
+  { flower: "pink roses & eryngium", date: "2026-10-31", note: "",
+    swatch: "radial-gradient(circle at 70% 32%, #5b7fbd 0 19%, transparent 21%), radial-gradient(circle at 30% 72%, #5b7fbd 0 11%, transparent 13%), radial-gradient(circle at 35% 35%, #ffd6e6, #e24e92)" },
 ];
 
 // The little bloom drawn next to each flower-log entry, picked by matching the flower name.
